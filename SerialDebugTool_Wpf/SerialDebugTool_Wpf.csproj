@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\background1.jpg" />
     <Resource Include="Images\background2.jpg" />
     <Resource Include="Images\background3.jpg" />

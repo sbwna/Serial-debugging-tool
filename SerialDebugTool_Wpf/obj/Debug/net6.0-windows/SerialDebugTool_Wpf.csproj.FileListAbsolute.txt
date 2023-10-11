@@ -18,3 +18,6 @@ D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Debug\net6.0-windows\refint\Se
 D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Debug\net6.0-windows\SerialDebugTool_Wpf.pdb
 D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Debug\net6.0-windows\SerialDebugTool_Wpf.genruntimeconfig.cache
 D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Debug\net6.0-windows\ref\SerialDebugTool_Wpf.dll
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\bin\Debug\net6.0-windows\CommunityToolkit.Mvvm.dll
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Debug\net6.0-windows\SerialDebugTool_Wpf.csproj.AssemblyReference.cache
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Debug\net6.0-windows\SerialDebugTool_Wpf.csproj.CopyComplete

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "GeRISRbxEqF+PLPj5gQD7Uwogs34uVZ18svOFkwL1ZdInTqxqtDa9mCP9898Ee9EPgaG/5nbLNA/1e3V2FabSw==",
+  "dgSpecHash": "1V3JgkFNmXLqrikaT334/zSxktTEpj4L0gLJp/totlNJ/IEHd4498CSwtJLA0gxr2TLANqCMPudkjfpQ2t02zQ==",
   "success": true,
   "projectFilePath": "D:\\code\\Serial_Debug_Tool\\SerialDebugTool_Wpf\\SerialDebugTool_Wpf.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\zxcv1\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512"
+  ],
   "logs": []
 }
