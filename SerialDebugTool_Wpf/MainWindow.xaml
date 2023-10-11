@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SerialDebugTool_Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="600"
+        Width="1000"
+        WindowStyle="None"
+        MouseMove="Move_MouseMove"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize">
     <Grid>
+        <Border CornerRadius="10"
+                Margin="5">
+            <Border.Background>
+                <ImageBrush ImageSource="Images/background1.jpg" />
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
 
+                <!--串口配置区-->
+                <StackPanel Grid.Column="0">
+
+                </StackPanel>
+
+                <!--数据接发区-->
+                <StackPanel Grid.Column="1">
+                    <!--数据接收-->
+                    <Grid>
+
+                    </Grid>
+
+                    <!--数据发送-->
+                    <StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

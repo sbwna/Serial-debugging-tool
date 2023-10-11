@@ -24,5 +24,18 @@ namespace SerialDebugTool_Wpf
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// 无边框鼠标拖动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Move_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
     }
 }
