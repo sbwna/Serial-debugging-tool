@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1V3JgkFNmXLqrikaT334/zSxktTEpj4L0gLJp/totlNJ/IEHd4498CSwtJLA0gxr2TLANqCMPudkjfpQ2t02zQ==",
+  "dgSpecHash": "eODAYDXEYTdTWLc6+0pMTVuVtKaWOTjv9PfVX+U2qGAEYjR9N8zhnXe2KWAcGfnCYGDLxerah9RRRpPXlg6KEg==",
   "success": true,
   "projectFilePath": "D:\\code\\Serial_Debug_Tool\\SerialDebugTool_Wpf\\SerialDebugTool_Wpf.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\zxcv1\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512"
+    "C:\\Users\\zxcv1\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512",
+    "C:\\Users\\zxcv1\\.nuget\\packages\\handycontrol\\3.4.0\\handycontrol.3.4.0.nupkg.sha512",
+    "C:\\Users\\zxcv1\\.nuget\\packages\\handycontrols\\3.4.5\\handycontrols.3.4.5.nupkg.sha512"
   ],
   "logs": []
 }

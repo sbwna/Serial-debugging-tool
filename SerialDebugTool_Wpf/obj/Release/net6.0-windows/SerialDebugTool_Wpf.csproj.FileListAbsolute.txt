@@ -1,0 +1,6 @@
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Release\net6.0-windows\SerialDebugTool_Wpf.csproj.AssemblyReference.cache
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Release\net6.0-windows\MainWindow.g.cs
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Release\net6.0-windows\App.g.cs
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Release\net6.0-windows\SerialDebugTool_Wpf_Content.g.cs
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Release\net6.0-windows\SerialDebugTool_Wpf_MarkupCompile.cache
+D:\code\Serial_Debug_Tool\SerialDebugTool_Wpf\obj\Release\net6.0-windows\SerialDebugTool_Wpf_MarkupCompile.lref

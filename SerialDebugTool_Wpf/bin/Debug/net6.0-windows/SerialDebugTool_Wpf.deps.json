@@ -8,7 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "SerialDebugTool_Wpf/1.0.0": {
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.2.1"
+          "CommunityToolkit.Mvvm": "8.2.1",
+          "HandyControl": "3.4.0",
+          "HandyControls": "3.4.5"
         },
         "runtime": {
           "SerialDebugTool_Wpf.dll": {}
@@ -21,7 +23,16 @@
             "fileVersion": "8.2.1.1"
           }
         }
-      }
+      },
+      "HandyControl/3.4.0": {
+        "runtime": {
+          "lib/net6.0/HandyControl.dll": {
+            "assemblyVersion": "3.4.0.0",
+            "fileVersion": "3.4.0.0"
+          }
+        }
+      },
+      "HandyControls/3.4.5": {}
     }
   },
   "libraries": {
@@ -36,6 +47,20 @@
       "sha512": "sha512-I24ofWVEdplxYjUez9/bljv/qb8r8Ccj6cvYXHexNBegLaD3iDy3QrzAAOYVMmfGWIXxlU1ZtECQNfU07+6hXQ==",
       "path": "communitytoolkit.mvvm/8.2.1",
       "hashPath": "communitytoolkit.mvvm.8.2.1.nupkg.sha512"
+    },
+    "HandyControl/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MgD5lxIm23oCv3+mFWH6EARLCOmR/spFaWeb813QtUDIQeUsbGK02xm1xDQEd0UGBcba6aho1FgCtiU4q7hHDw==",
+      "path": "handycontrol/3.4.0",
+      "hashPath": "handycontrol.3.4.0.nupkg.sha512"
+    },
+    "HandyControls/3.4.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hzia27R7D4zBXjisASbkWTEGgaKkgDS+iB1IAB7pjvx7JVa/FFVs2X1DgAQrSuuk9hdu9JMFUzop06uqmP9zqw==",
+      "path": "handycontrols/3.4.5",
+      "hashPath": "handycontrols.3.4.5.nupkg.sha512"
     }
   }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerialDebugTool_Wpf.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace SerialDebugTool_Wpf
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = new MainWindowViewModel();
         }
 
         /// <summary>
@@ -36,6 +39,16 @@ namespace SerialDebugTool_Wpf
             {
                 this.DragMove();
             }
+        }
+
+        /// <summary>
+        /// 退出程序
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RepeatButton_Close_Click(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
     }
 }

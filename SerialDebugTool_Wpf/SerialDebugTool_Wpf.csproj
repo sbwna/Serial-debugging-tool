@@ -5,24 +5,36 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\std.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\background1.jpg" />
-    <None Remove="Images\background2.jpg" />
-    <None Remove="Images\background3.jpg" />
-    <None Remove="Images\background4.jpg" />
+    <None Remove="Images\back.jpg" />
+    <None Remove="Images\paperplane.png" />
+    <None Remove="Images\std.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\std.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\paperplane.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="HandyControl" Version="3.4.0" />
+    <PackageReference Include="HandyControls" Version="3.4.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\background1.jpg" />
-    <Resource Include="Images\background2.jpg" />
-    <Resource Include="Images\background3.jpg" />
-    <Resource Include="Images\background4.jpg" />
+    <Resource Include="Images\back.jpg" />
+    <Resource Include="Images\std.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net6.0-windows\Images\" />
   </ItemGroup>
 
 </Project>
