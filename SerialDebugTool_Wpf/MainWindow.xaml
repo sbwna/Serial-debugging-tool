@@ -48,7 +48,8 @@
                     <StackPanel Orientation="Horizontal">
                         <Image Source="./Images/paperplane.png"
                                HorizontalAlignment="Left"
-                               VerticalAlignment="Center" Margin="20,10,5,0"
+                               VerticalAlignment="Center"
+                               Margin="20,10,5,0"
                                Width="40"
                                Height="40" />
                         <TextBlock Text="串口调试助手"
@@ -147,11 +148,9 @@
                         <ToggleButton Grid.Row="5"
                                       Grid.Column="1"
                                       Margin="0,10,20,5"
-                                      IsChecked="False"
-                                      FontSize="22"
+                                      FontSize="24"
                                       HorizontalAlignment="Left"
                                       VerticalAlignment="Center"
-                                      Content="开"
                                       Style="{StaticResource ToggleButtonSwitch}" />
                     </Grid>
 
@@ -163,7 +162,7 @@
                                   VerticalAlignment="Center"
                                   Style="{StaticResource RepeatButtonPrimary}"
                                   Background="{DynamicResource DarkSuccessBrush}"
-                                  Foreground="{DynamicResource TextIconBrush}"
+                                  Foreground="{DynamicResource DarkDefaultBrush}"
                                   hc:BorderElement.CornerRadius="4"
                                   BorderThickness="0.1" />
 
@@ -177,11 +176,14 @@
                     <UniformGrid Columns="3"
                                  Margin="25,5,10,0">
                         <RadioButton Content="String"
-                                     Style="{StaticResource RadioButtonBaseStyle}" />
+                                     Style="{StaticResource RadioButtonBaseStyle}"
+                                     Foreground="{StaticResource SecondaryBorderBrush}" />
                         <RadioButton Content="ASCII"
-                                     Style="{StaticResource RadioButtonBaseStyle}" />
+                                     Style="{StaticResource RadioButtonBaseStyle}"
+                                     Foreground="{StaticResource SecondaryBorderBrush}" />
                         <RadioButton Content="HEX"
-                                     Style="{StaticResource RadioButtonBaseStyle}" />
+                                     Style="{StaticResource RadioButtonBaseStyle}"
+                                     Foreground="{StaticResource SecondaryBorderBrush}" />
                     </UniformGrid>
 
                     <TextBlock Text="发送区属性"
@@ -194,11 +196,14 @@
                     <UniformGrid Columns="3"
                                  Margin="25,5,10,0">
                         <RadioButton Content="String"
-                                     Style="{StaticResource RadioButtonBaseStyle}" />
+                                     Style="{StaticResource RadioButtonBaseStyle}"
+                                     Foreground="{StaticResource SecondaryBorderBrush}" />
                         <RadioButton Content="ASCII"
-                                     Style="{StaticResource RadioButtonBaseStyle}" />
+                                     Style="{StaticResource RadioButtonBaseStyle}"
+                                     Foreground="{StaticResource SecondaryBorderBrush}" />
                         <RadioButton Content="HEX"
-                                     Style="{StaticResource RadioButtonBaseStyle}" />
+                                     Style="{StaticResource RadioButtonBaseStyle}"
+                                     Foreground="{StaticResource SecondaryBorderBrush}" />
                     </UniformGrid>
 
                     <UniformGrid Columns="2"
@@ -210,7 +215,7 @@
                                       Margin="0,0,5,0"
                                       Style="{StaticResource RepeatButtonPrimary}"
                                       Background="{DynamicResource DangerBrush}"
-                                      Foreground="{DynamicResource BackgroundBrush}"
+                                      Foreground="{StaticResource SecondaryRegionBrush}"
                                       hc:BorderElement.CornerRadius="3"
                                       BorderThickness="0.1" />
                         <RepeatButton Content="清空发送数据"
@@ -218,7 +223,7 @@
                                       Margin="15,0,0,0"
                                       Style="{StaticResource RepeatButtonPrimary}"
                                       Background="{DynamicResource DangerBrush}"
-                                      Foreground="{DynamicResource BackgroundBrush}"
+                                      Foreground="{StaticResource SecondaryRegionBrush}"
                                       hc:BorderElement.CornerRadius="3"
                                       BorderThickness="0.1" />
                     </UniformGrid>
@@ -249,9 +254,9 @@
                                       Delay="500"
                                       Width="30"
                                       Style="{StaticResource RepeatButtonPrimary}"
-                                      Background="CornflowerBlue"
                                       BorderThickness="0"
-                                      Foreground="{DynamicResource TextIconBrush}"
+                                      Foreground="{DynamicResource SecondaryBorderBrush}"
+                                      Background="{DynamicResource DarkDefaultBrush}"
                                       hc:BorderElement.CornerRadius="100"
                                       Click="RepeatButton_Close_Click" />
 
@@ -261,6 +266,9 @@
                                      Height="450"
                                      Margin="10,0,20,0"
                                      Style="{StaticResource RichTextBoxBaseStyle}"
+                                     Background="#F7F7F7"
+                                     Opacity="0.7"
+                                     BorderThickness="1.5"
                                      FontSize="20" />
 
                     </Grid>
@@ -285,7 +293,7 @@
                                       Delay="500"
                                       Style="{StaticResource RepeatButtonPrimary}"
                                       Background="{DynamicResource SuccessBrush}"
-                                      Foreground="{DynamicResource TextIconBrush}"
+                                      Foreground="{DynamicResource DarkDefaultBrush}"
                                       hc:BorderElement.CornerRadius="4"
                                       BorderThickness="0.1" />
                     </StackPanel>
