@@ -1,7 +1,9 @@
 ﻿using SerialDebugTool_Wpf.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +28,13 @@ namespace SerialDebugTool_Wpf
             InitializeComponent();
 
             this.DataContext = new MainWindowViewModel();
+
+            //获取所有可用串口的名称
+            string[] portNames = SerialPort.GetPortNames();
+            foreach (string portName in portNames)
+            {
+                this.cbPortNumbers.Items.Add(portName);
+            }
         }
 
         /// <summary>
@@ -41,14 +50,55 @@ namespace SerialDebugTool_Wpf
             }
         }
 
-        /// <summary>
-        /// 退出程序
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RepeatButton_Close_Click(object sender, RoutedEventArgs e)
+        #region 监测串口设备插拔
+        private void Test()
         {
-            System.Environment.Exit(0);
+            StartMonitoringPortChanges();
+
+            Console.WriteLine("正在监测串口设备的插拔情况。");
+            Console.WriteLine("按任意键停止监测。");
+
+            Console.ReadKey();
+
+            if (watcher != null)
+            {
+                watcher.Stop();
+                watcher.Dispose();
+            }
         }
+
+        private ManagementEventWatcher? watcher;
+
+        private void StartMonitoringPortChanges()
+        {
+            WqlEventQuery query = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2 OR EventType = 3");
+
+            watcher = new ManagementEventWatcher(new ManagementScope("root\\cimv2"), query);
+            watcher.EventArrived += PortChangeEventReceived;
+            watcher.Start();
+        }
+
+        private void PortChangeEventReceived(object sender, EventArrivedEventArgs e)
+        {
+            int eventType = int.Parse(e.NewEvent.Properties["EventType"].Value.ToString());
+
+            if (eventType == 2)
+            {
+                Console.WriteLine("串口设备已插入.");
+            }
+            else if (eventType == 3)
+            {
+                Console.WriteLine("串口设备已拔出.");
+            }
+
+            // 你可以在这里执行其他操作，例如刷新串口列表
+            string[] availablePorts = SerialPort.GetPortNames();
+            Console.WriteLine("当前可用的串口:");
+            foreach (string port in availablePorts)
+            {
+                Console.WriteLine(port);
+            }
+        }
+        #endregion
     }
 }
