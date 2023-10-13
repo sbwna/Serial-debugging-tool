@@ -55,11 +55,6 @@
 
 ### 项目使用的框架
 
-+ .NET框架：.NET 6
-+ 编程语言：C#
-+ UI框架：WPF
-+ MVVM框架：CommunityToolkit.Mvvm 8.2.1
-
-+ 控件库框架：HandyControl 3.4.0、HandyControls 3.4.5
-
-+ 其他：待定
++ .NET框架：.NET 6 + C# + WPF
++ MVVM框架：CommunityToolkit.Mvvm
++ 控件库框架：HandyControl
