@@ -68,11 +68,11 @@
                                Margin="20,0,0,0"
                                Style="{StaticResource TextBlockTitle}"
                                Foreground="{StaticResource SecondaryTextBrush}" />
-                    <ComboBox x:Name="cbPortNumbers"
-                              Grid.Column="1"
+                    <ComboBox Grid.Column="1"
                               Margin="0,5,20,5"
                               FontSize="22"
                               Style="{StaticResource ComboBox.Small}"
+                              Foreground="{StaticResource SecondaryTextBrush}"
                               ItemsSource="{Binding PortNumLst}"
                               SelectedItem="{Binding PortNumber}" />
                     <TextBlock Grid.Row="1"
@@ -83,11 +83,14 @@
                                Margin="20,0,0,0"
                                Style="{StaticResource TextBlockTitle}"
                                Foreground="{StaticResource SecondaryTextBrush}" />
-                    <ComboBox Grid.Row="1"
+                    <ComboBox x:Name="cbBaudRate"
+                              Grid.Row="1"
                               Grid.Column="1"
                               Margin="0,5,20,5"
                               FontSize="22"
-                              Style="{StaticResource ComboBox.Small}" />
+                              Style="{StaticResource ComboBox.Small}"
+                              Foreground="{StaticResource SecondaryTextBrush}"
+                              SelectedItem="{Binding BaudRate}" />
                     <TextBlock Grid.Row="2"
                                Text="数据位："
                                HorizontalAlignment="Left"
@@ -96,11 +99,14 @@
                                Margin="20,0,0,0"
                                Style="{StaticResource TextBlockTitle}"
                                Foreground="{StaticResource SecondaryTextBrush}" />
-                    <ComboBox Grid.Row="2"
+                    <ComboBox x:Name="cbDataBits"
+                              Grid.Row="2"
                               Grid.Column="1"
                               Margin="0,5,20,5"
                               FontSize="22"
-                              Style="{StaticResource ComboBox.Small}" />
+                              Style="{StaticResource ComboBox.Small}"
+                              Foreground="{StaticResource SecondaryTextBrush}"
+                              SelectedItem="{Binding DataBits}" />
                     <TextBlock Grid.Row="3"
                                Text="校验位："
                                HorizontalAlignment="Left"
@@ -109,12 +115,14 @@
                                Margin="20,0,0,0"
                                Style="{StaticResource TextBlockTitle}"
                                Foreground="{StaticResource SecondaryTextBrush}" />
-                    <ComboBox Grid.Row="3"
+                    <ComboBox x:Name="cbParityBit"
+                              Grid.Row="3"
                               Grid.Column="1"
                               Margin="0,5,20,5"
                               FontSize="22"
                               Style="{StaticResource ComboBox.Small}"
-                              Foreground="{StaticResource SecondaryTextBrush}" />
+                              Foreground="{StaticResource SecondaryTextBrush}"
+                              SelectedItem="{Binding ParityBit}" />
                     <TextBlock Grid.Row="4"
                                Text="停止位："
                                HorizontalAlignment="Left"
@@ -123,11 +131,14 @@
                                Margin="20,0,0,0"
                                Style="{StaticResource TextBlockTitle}"
                                Foreground="{StaticResource SecondaryTextBrush}" />
-                    <ComboBox Grid.Row="4"
+                    <ComboBox x:Name="cbStopBit"
+                              Grid.Row="4"
                               Grid.Column="1"
                               Margin="0,5,20,5"
                               FontSize="22"
-                              Style="{StaticResource ComboBox.Small}" />
+                              Style="{StaticResource ComboBox.Small}"
+                              Foreground="{StaticResource SecondaryTextBrush}"
+                              SelectedItem="{Binding StopBit}" />
                     <TextBlock Grid.Row="5"
                                Text="状   态："
                                HorizontalAlignment="Left"
@@ -142,7 +153,8 @@
                                   FontSize="24"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Center"
-                                  Style="{StaticResource ToggleButtonSwitch}" />
+                                  Style="{StaticResource ToggleButtonSwitch}"
+                                  IsChecked="{Binding IsOpen}" />
                 </Grid>
 
                 <UniformGrid Columns="2">
@@ -173,7 +185,8 @@
                                   Background="{StaticResource DarkSuccessBrush}"
                                   Foreground="{StaticResource DarkDefaultBrush}"
                                   hc:BorderElement.CornerRadius="4"
-                                  BorderThickness="0.1" />
+                                  BorderThickness="0.1"
+                                  Command="{Binding OpenSerialPortCommand}" />
                 </UniformGrid>
 
                 <!--数据内容格式选择-->
@@ -270,7 +283,7 @@
                                   Foreground="{StaticResource SecondaryBorderBrush}"
                                   Background="{StaticResource DarkDefaultBrush}"
                                   hc:BorderElement.CornerRadius="100"
-                                  Command="{Binding CloseCommand}" />
+                                  Command="{Binding ExitCommand}" />
 
                     <!--接收区-->
                     <RichTextBox Grid.Row="1"

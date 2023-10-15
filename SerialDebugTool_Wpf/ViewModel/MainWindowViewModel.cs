@@ -6,6 +6,8 @@ namespace SerialDebugTool_Wpf.ViewModel
 {
     public partial class MainWindowViewModel : ObservableObject
     {
+        #region 属性
+
         /// <summary>
         /// 当前串口号
         /// </summary>
@@ -27,6 +29,60 @@ namespace SerialDebugTool_Wpf.ViewModel
         }
 
         /// <summary>
+        /// 波特率
+        /// </summary>
+        private int baudRate;
+        public int BaudRate
+        {
+            get => baudRate;
+            set => SetProperty(ref baudRate, value);
+        }
+
+        /// <summary>
+        /// 数据位
+        /// </summary>
+        private int dataBits;
+        public int DataBits
+        {
+            get => dataBits;
+            set => SetProperty(ref dataBits, value);
+        }
+
+        /// <summary>
+        /// 校验位
+        /// </summary>
+        private string? parityBit;
+        public string? ParityBit
+        {
+            get => parityBit;
+            set => SetProperty(ref parityBit, value);
+        }
+
+        /// <summary>
+        /// 数据位
+        /// </summary>
+        private float stopBit;
+        public float StopBit
+        {
+            get => stopBit;
+            set => SetProperty(ref stopBit, value);
+        }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        private bool isOpen = false;
+        public bool IsOpen
+        {
+            get => isOpen;
+            set => SetProperty(ref isOpen, value);
+        }
+
+        #endregion
+
+        #region 命令
+
+        /// <summary>
         /// 获取串口列表
         /// </summary>
         private RelayCommand? getPortNumLst;
@@ -41,14 +97,27 @@ namespace SerialDebugTool_Wpf.ViewModel
         }
 
         /// <summary>
+        /// 打开串口
+        /// </summary>
+        private RelayCommand? openSerialPort;
+        public IRelayCommand OpenSerialPortCommand => openSerialPort ??= new RelayCommand(OpenSerialPort);
+
+        private void OpenSerialPort()
+        {
+            IsOpen = !IsOpen;
+        }
+
+        /// <summary>
         /// 程序退出
         /// </summary>
-        private RelayCommand? close;
-        public IRelayCommand CloseCommand => close ??= new RelayCommand(Close);
+        private RelayCommand? exit;
+        public IRelayCommand ExitCommand => exit ??= new RelayCommand(Exit);
 
-        private void Close()
+        private void Exit()
         {
             System.Environment.Exit(0);
         }
+
+        #endregion
     }
 }
