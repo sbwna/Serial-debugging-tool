@@ -72,7 +72,9 @@
                               Grid.Column="1"
                               Margin="0,5,20,5"
                               FontSize="22"
-                              Style="{StaticResource ComboBox.Small}" />
+                              Style="{StaticResource ComboBox.Small}"
+                              ItemsSource="{Binding PortNumLst}"
+                              SelectedItem="{Binding PortNumber}" />
                     <TextBlock Grid.Row="1"
                                Text="波特率："
                                HorizontalAlignment="Left"
@@ -143,18 +145,36 @@
                                   Style="{StaticResource ToggleButtonSwitch}" />
                 </Grid>
 
-                <!--打开串口-->
-                <RepeatButton Content="打开串口"
-                              FontSize="22"
-                              Width="180"
-                              Height="40"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Style="{StaticResource RepeatButtonPrimary}"
-                              Background="{StaticResource DarkSuccessBrush}"
-                              Foreground="{StaticResource DarkDefaultBrush}"
-                              hc:BorderElement.CornerRadius="4"
-                              BorderThickness="0.1" />
+                <UniformGrid Columns="2">
+                    <!--搜索串口-->
+                    <RepeatButton Content="搜索串口"
+                                  FontSize="18"
+                                  Width="100"
+                                  Height="40"
+                                  Margin="0,0,10,0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource RepeatButtonPrimary}"
+                                  Background="{StaticResource DarkSuccessBrush}"
+                                  Foreground="{StaticResource DarkDefaultBrush}"
+                                  hc:BorderElement.CornerRadius="4"
+                                  BorderThickness="0.1"
+                                  Command="{Binding GetPortNumLstCommand}" />
+
+                    <!--打开串口-->
+                    <RepeatButton Content="打开串口"
+                                  FontSize="18"
+                                  Width="100"
+                                  Height="40"
+                                  Margin="10,0,0,0"
+                                  HorizontalAlignment="Left"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource RepeatButtonPrimary}"
+                                  Background="{StaticResource DarkSuccessBrush}"
+                                  Foreground="{StaticResource DarkDefaultBrush}"
+                                  hc:BorderElement.CornerRadius="4"
+                                  BorderThickness="0.1" />
+                </UniformGrid>
 
                 <!--数据内容格式选择-->
                 <TextBlock Text="接收区属性"

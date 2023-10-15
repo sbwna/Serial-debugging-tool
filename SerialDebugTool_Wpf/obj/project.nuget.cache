@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ivzyNhbCKXcO4Q6mEIm9h8dG8+6yLxQ6JI/gjylOfbMb+WbvlTghieptfItrHUHUCBpeZRVpsdJ0Fv2XS6neqQ==",
+  "dgSpecHash": "noUcv4sCmK7ZyXNQqxB6HmjoB/oIF3AVnGqXwI7mks8mQqd8idOCHptqjLP7GVtdsvZPt4BkHhmVggbA3PSxXw==",
   "success": true,
   "projectFilePath": "D:\\code\\Serial_Debug_Tool\\SerialDebugTool_Wpf\\SerialDebugTool_Wpf.csproj",
   "expectedPackageFiles": [
@@ -13,9 +13,7 @@
     "C:\\Users\\zxcv1\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\zxcv1\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "C:\\Users\\zxcv1\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\zxcv1\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
-    "C:\\Users\\zxcv1\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512",
-    "C:\\Users\\zxcv1\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512"
+    "C:\\Users\\zxcv1\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

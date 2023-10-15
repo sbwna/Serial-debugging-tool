@@ -63,10 +63,6 @@
             "System.IO.Ports": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "System.Management": {
-              "target": "Package",
-              "version": "[7.0.2, )"
             }
           },
           "imports": [
