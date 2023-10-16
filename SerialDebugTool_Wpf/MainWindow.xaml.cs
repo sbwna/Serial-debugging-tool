@@ -29,7 +29,7 @@ namespace SerialDebugTool_Wpf
             int[] baudRates = { 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 56000, 57600, 115200, 230400, 460800, 921600 };
             int[] dataBits = { 6, 7, 8 };
             string[] parityBits = { "None", "Odd", "Even", "Mark", "Space" };
-            float[] stopBits = { 1, 1.5f, 2 };
+            float[] stopBits = { 0, 1, 1.5f, 2 };
 
             foreach (var br in baudRates)
             {

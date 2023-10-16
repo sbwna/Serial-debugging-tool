@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SerialDebugTool_Wpf.Model;
 using System.IO.Ports;
 using System.Windows.Documents;
 
@@ -11,6 +12,11 @@ namespace SerialDebugTool_Wpf.ViewModel
         {
             ReceviedData = new FlowDocument(new Paragraph(new Run("")));
         }
+
+        /// <summary>
+        /// 串口参数配置
+        /// </summary>
+        private static SerialPortParameterConfig serialPortConfig = new SerialPortParameterConfig();
 
         #region 属性
 
@@ -104,6 +110,16 @@ namespace SerialDebugTool_Wpf.ViewModel
             set => SetProperty(ref sendData, value);
         }
 
+        /// <summary>
+        /// 打开串口按钮内容
+        /// </summary>
+        private string openPortButtonContent = "打开串口";
+        public string OpenPortButtonContent
+        {
+            get => openPortButtonContent;
+            set => SetProperty(ref openPortButtonContent, value);
+        }
+
         #endregion
 
         #region 命令
@@ -130,7 +146,25 @@ namespace SerialDebugTool_Wpf.ViewModel
 
         private void OpenSerialPort()
         {
+            // 配置为空
+            if (PortNumber == null || BaudRate == null || DataBits == null || ParityBit == null || StopBit == null)
+            {
+
+                return;
+            }
+
             IsOpen = !IsOpen;
+            if (IsOpen)
+            {
+                OpenPortButtonContent = "关闭串口";
+                serialPortConfig = new SerialPortParameterConfig(PortNumber, BaudRate, DataBits, ParityBit, StopBit);
+                serialPortConfig.Open();
+            }
+            else
+            {
+                OpenPortButtonContent = "打开串口";
+                serialPortConfig.Close();
+            }
         }
 
         /// <summary>
@@ -168,7 +202,7 @@ namespace SerialDebugTool_Wpf.ViewModel
                 return;
             }
 
-
+            serialPortConfig.Send(SendData);
         }
 
         /// <summary>

@@ -174,7 +174,7 @@
                                   Command="{Binding GetPortNumLstCommand}" />
 
                     <!--打开串口-->
-                    <RepeatButton Content="打开串口"
+                    <RepeatButton Content="{Binding OpenPortButtonContent}"
                                   FontSize="18"
                                   Width="100"
                                   Height="40"
