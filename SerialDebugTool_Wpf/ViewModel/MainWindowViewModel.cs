@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SerialDebugTool_Wpf.Converter;
+using System;
 using System.IO.Ports;
+using System.Windows;
 using System.Windows.Documents;
 using MessageBox = HandyControl.Controls.MessageBox;
 
@@ -11,7 +13,7 @@ namespace SerialDebugTool_Wpf.ViewModel
     {
         public MainWindowViewModel()
         {
-            ReceviedData = new FlowDocument(new Paragraph(new Run("")));
+            ReceviedData = new FlowDocument();
         }
 
         //串口
@@ -174,10 +176,15 @@ namespace SerialDebugTool_Wpf.ViewModel
         /// <param name="e"></param>
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //Paragraph p = new Paragraph(new Run(serialPort.ReadExisting()));
-            //ReceviedData.Blocks.Add(p);
-
-            MessageBox.Info(serialPort.ReadExisting(), "数据已接收");
+            // 在需要时使用 Dispatcher 返回 UI 线程
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // 更新 UI 元素
+                string data = serialPort.ReadExisting();
+                string receviedHead = $"[{DateTime.Now.ToString()}]收◄◄◄" + data;
+                Paragraph p = new Paragraph(new Run(receviedHead));
+                ReceviedData.Blocks.Add(p);
+            });
         }
 
         /// <summary>
@@ -195,6 +202,13 @@ namespace SerialDebugTool_Wpf.ViewModel
             }
 
             serialPort.WriteLine(SendData);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                // 更新 UI 元素
+                string sendHead = $"[{DateTime.Now.ToString()}]发►►►" + SendData;
+                Paragraph p = new Paragraph(new Run(sendHead));
+                ReceviedData.Blocks.Add(p);
+            });
         }
 
         /// <summary>

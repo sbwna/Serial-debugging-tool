@@ -268,7 +268,7 @@
                         <ColumnDefinition Width="4*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="数据接收区:"
+                    <TextBlock Text="数据显示区:"
                                FontSize="24"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
@@ -297,7 +297,8 @@
                                  Background="#F7F7F7"
                                  Opacity="0.7"
                                  BorderThickness="1.5"
-                                 FontSize="20" />
+                                 FontSize="14"
+                                 IsReadOnly="True" />
                 </Grid>
 
                 <!--数据发送-->
