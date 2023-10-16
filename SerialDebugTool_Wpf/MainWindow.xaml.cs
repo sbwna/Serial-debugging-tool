@@ -1,8 +1,4 @@
 ﻿using SerialDebugTool_Wpf.ViewModel;
-using System;
-using System.IO.Ports;
-using System.Security.Cryptography;
-using System.Security.Policy;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,9 +13,12 @@ namespace SerialDebugTool_Wpf
         {
             InitializeComponent();
 
-            this.DataContext = new MainWindowViewModel();
+            var mwvm = new MainWindowViewModel();
+            this.DataContext = mwvm;
 
             InitConfig();
+
+            this.rtbReceviedData.Document = mwvm.ReceviedData;
         }
 
         /// <summary>

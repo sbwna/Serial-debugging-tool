@@ -242,7 +242,8 @@
                                   Background="{StaticResource DangerBrush}"
                                   Foreground="{StaticResource SecondaryRegionBrush}"
                                   hc:BorderElement.CornerRadius="3"
-                                  BorderThickness="0.1" />
+                                  BorderThickness="0.1"
+                                  Command="{Binding ClearReceviedDataCommand}" />
                     <RepeatButton Content="清空发送数据"
                                   FontSize="14"
                                   Margin="15,0,0,0"
@@ -250,7 +251,8 @@
                                   Background="{StaticResource DangerBrush}"
                                   Foreground="{StaticResource SecondaryRegionBrush}"
                                   hc:BorderElement.CornerRadius="3"
-                                  BorderThickness="0.1" />
+                                  BorderThickness="0.1"
+                                  Command="{Binding ClearSendDataCommand}" />
                 </UniformGrid>
             </StackPanel>
 
@@ -286,7 +288,8 @@
                                   Command="{Binding ExitCommand}" />
 
                     <!--接收区-->
-                    <RichTextBox Grid.Row="1"
+                    <RichTextBox x:Name="rtbReceviedData"
+                                 Grid.Row="1"
                                  Grid.ColumnSpan="2"
                                  Height="450"
                                  Margin="10,0,20,0"
@@ -295,7 +298,6 @@
                                  Opacity="0.7"
                                  BorderThickness="1.5"
                                  FontSize="20" />
-
                 </Grid>
 
                 <!--数据发送-->
@@ -310,7 +312,8 @@
                              hc:InfoElement.Necessary="True"
                              Style="{StaticResource TextBoxExtend}"
                              Name="TextContent"
-                             hc:BorderElement.CornerRadius="5" />
+                             hc:BorderElement.CornerRadius="5"
+                             Text="{Binding SendData}" />
                     <RepeatButton Margin="10,20,0,20"
                                   Content="发送数据"
                                   FontSize="24"
@@ -320,7 +323,8 @@
                                   Background="{StaticResource SuccessBrush}"
                                   Foreground="{StaticResource DarkDefaultBrush}"
                                   hc:BorderElement.CornerRadius="4"
-                                  BorderThickness="0.1" />
+                                  BorderThickness="0.1"
+                                  Command="{Binding SendDataCommand}" />
                 </StackPanel>
             </StackPanel>
 

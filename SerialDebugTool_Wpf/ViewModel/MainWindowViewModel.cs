@@ -1,11 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.IO.Ports;
+using System.Windows.Documents;
 
 namespace SerialDebugTool_Wpf.ViewModel
 {
     public partial class MainWindowViewModel : ObservableObject
     {
+        public MainWindowViewModel()
+        {
+            ReceviedData = new FlowDocument(new Paragraph(new Run("")));
+        }
+
         #region 属性
 
         /// <summary>
@@ -78,6 +84,26 @@ namespace SerialDebugTool_Wpf.ViewModel
             set => SetProperty(ref isOpen, value);
         }
 
+        /// <summary>
+        /// 接收区数据
+        /// </summary>
+        private FlowDocument receviedData;
+        public FlowDocument ReceviedData
+        {
+            get => receviedData;
+            set => SetProperty(ref receviedData, value);
+        }
+
+        /// <summary>
+        /// 发送区数据
+        /// </summary>
+        private string sendData;
+        public string SendData
+        {
+            get => sendData;
+            set => SetProperty(ref sendData, value);
+        }
+
         #endregion
 
         #region 命令
@@ -105,6 +131,44 @@ namespace SerialDebugTool_Wpf.ViewModel
         private void OpenSerialPort()
         {
             IsOpen = !IsOpen;
+        }
+
+        /// <summary>
+        /// 清空接收数据
+        /// </summary>
+        private RelayCommand? clearReceviedData;
+        public IRelayCommand ClearReceviedDataCommand => clearReceviedData ??= new RelayCommand(ClearReceviedData);
+
+        private void ClearReceviedData()
+        {
+            ReceviedData.Blocks.Clear();
+        }
+
+        /// <summary>
+        /// 清空发送数据
+        /// </summary>
+        private RelayCommand? clearSendData;
+        public IRelayCommand ClearSendDataCommand => clearSendData ??= new RelayCommand(ClearSendData);
+
+        private void ClearSendData()
+        {
+            SendData = string.Empty;
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        private RelayCommand? send;
+        public IRelayCommand SendDataCommand => send ??= new RelayCommand(Send);
+
+        private void Send()
+        {
+            if (!IsOpen)
+            {
+                return;
+            }
+
+
         }
 
         /// <summary>
