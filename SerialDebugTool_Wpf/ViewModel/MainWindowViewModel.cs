@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using SerialDebugTool_Wpf.Converter;
 using System;
 using System.IO.Ports;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Documents;
 using MessageBox = HandyControl.Controls.MessageBox;
@@ -11,15 +12,10 @@ namespace SerialDebugTool_Wpf.ViewModel
 {
     public partial class MainWindowViewModel : ObservableObject
     {
-        public MainWindowViewModel()
-        {
-            ReceviedData = new FlowDocument();
-        }
-
+        #region 属性
         //串口
         private static SerialPort serialPort = new SerialPort();
 
-        #region 属性
         /// <summary>
         /// 当前串口号
         /// </summary>
@@ -93,7 +89,7 @@ namespace SerialDebugTool_Wpf.ViewModel
         /// <summary>
         /// 接收区数据
         /// </summary>
-        private FlowDocument receviedData;
+        private FlowDocument receviedData = new FlowDocument();
         public FlowDocument ReceviedData
         {
             get => receviedData;
@@ -118,6 +114,26 @@ namespace SerialDebugTool_Wpf.ViewModel
         {
             get => openPortButtonContent;
             set => SetProperty(ref openPortButtonContent, value);
+        }
+
+        /// <summary>
+        /// 发送数据格式
+        /// </summary>
+        private bool sendDataFormat = true;
+        public bool SendDataFormat
+        {
+            get => sendDataFormat;
+            set => SetProperty(ref sendDataFormat, value);
+        }
+
+        /// <summary>
+        /// 接收数据格式
+        /// </summary>
+        private bool receivedDataFormat = true;
+        public bool ReceivedDataFormat
+        {
+            get => receivedDataFormat;
+            set => SetProperty(ref receivedDataFormat, value);
         }
         #endregion
 
@@ -176,11 +192,28 @@ namespace SerialDebugTool_Wpf.ViewModel
         /// <param name="e"></param>
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            string data = "";
+
+            //读取数据
+            int bytesToRead = serialPort.BytesToRead;
+            byte[] buffer = new byte[bytesToRead];
+            serialPort.Read(buffer, 0, bytesToRead);
+
+            //ASCII格式
+            if (ReceivedDataFormat)
+            {
+                data = System.Text.Encoding.ASCII.GetString(buffer);
+            }
+            //HEX格式
+            else
+            {
+                data = BitConverter.ToString(buffer);
+            }
+
             // 在需要时使用 Dispatcher 返回 UI 线程
             Application.Current.Dispatcher.Invoke(() =>
             {
                 // 更新 UI 元素
-                string data = serialPort.ReadExisting();
                 string receviedHead = $"[{DateTime.Now.ToString()}]收◄◄◄" + data;
                 Paragraph p = new Paragraph(new Run(receviedHead));
                 ReceviedData.Blocks.Add(p);
@@ -201,14 +234,60 @@ namespace SerialDebugTool_Wpf.ViewModel
                 return;
             }
 
-            serialPort.WriteLine(SendData);
+            //ASCII格式
+            if (SendDataFormat)
+            {
+                serialPort.WriteLine(SendData);
+            }
+            //HEX
+            else
+            {
+                //HEX格式：0~9、a~f任意组合
+                if (!IsValidHex(SendData))
+                {
+                    MessageBox.Error("输入的不是有效HEX字符组合！（有效格式为：只能包含0~9、A~F、a~f，且不能包含空格。）", "发送失败");
+                    return;
+                }
+
+                byte[] byteData = HexStringToByteArray(SendData);
+                serialPort.Write(byteData, 0, byteData.Length);
+            }
+
+            // 更新 UI 元素
             Application.Current.Dispatcher.Invoke(() =>
             {
-                // 更新 UI 元素
                 string sendHead = $"[{DateTime.Now.ToString()}]发►►►" + SendData;
                 Paragraph p = new Paragraph(new Run(sendHead));
                 ReceviedData.Blocks.Add(p);
             });
+        }
+
+        /// <summary>
+        /// 检查是否满足HEX字符格式
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private bool IsValidHex(string input)
+        {
+            // 使用正则表达式检查输入是否合法
+            string pattern = @"^[0-9A-Fa-f\s]+$";
+            return Regex.IsMatch(input, pattern);
+        }
+
+        /// <summary>
+        /// string转byte[]
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        private byte[] HexStringToByteArray(string hex)
+        {
+            int length = hex.Length / 2;
+            byte[] bytes = new byte[length];
+            for (int i = 0; i < length; i++)
+            {
+                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+            }
+            return bytes;
         }
 
         /// <summary>
@@ -243,6 +322,7 @@ namespace SerialDebugTool_Wpf.ViewModel
         {
             System.Environment.Exit(0);
         }
+
         #endregion
     }
 }
