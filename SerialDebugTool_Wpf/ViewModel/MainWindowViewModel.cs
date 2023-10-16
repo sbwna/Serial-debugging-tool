@@ -174,8 +174,15 @@ namespace SerialDebugTool_Wpf.ViewModel
                 serialPort = new SerialPort(PortNumber, BaudRate, SerialPortParameterConvertor.ParityConvertor(ParityBit),
                     DataBits, SerialPortParameterConvertor.StopBitsConvertor(StopBit));
 
-                serialPort.Open();
-                serialPort.DataReceived += SerialPort_DataReceived;
+                try
+                {
+                    serialPort.Open();
+                    serialPort.DataReceived += SerialPort_DataReceived;
+                }
+                catch
+                {
+                    MessageBox.Error("串口参数配置错误", "打开串口失败");
+                }
             }
             else
             {
@@ -237,7 +244,14 @@ namespace SerialDebugTool_Wpf.ViewModel
             //ASCII格式
             if (SendDataFormat)
             {
-                serialPort.WriteLine(SendData);
+                try
+                {
+                    serialPort.WriteLine(SendData);
+                }
+                catch
+                {
+                    MessageBox.Error("数据发送失败", "串口通信");
+                }
             }
             //HEX
             else
@@ -249,8 +263,15 @@ namespace SerialDebugTool_Wpf.ViewModel
                     return;
                 }
 
-                byte[] byteData = HexStringToByteArray(SendData);
-                serialPort.Write(byteData, 0, byteData.Length);
+                try
+                {
+                    byte[] byteData = HexStringToByteArray(SendData);
+                    serialPort.Write(byteData, 0, byteData.Length);
+                }
+                catch
+                {
+                    MessageBox.Error("数据发送失败", "串口通信");
+                }
             }
 
             // 更新 UI 元素
