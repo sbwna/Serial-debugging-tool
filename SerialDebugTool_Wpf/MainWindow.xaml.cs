@@ -16,6 +16,7 @@ namespace SerialDebugTool_Wpf
             var mwvm = new MainWindowViewModel();
             this.DataContext = mwvm;
 
+            //初始化配置
             InitConfig();
 
             this.rtbReceviedData.Document = mwvm.ReceviedData;

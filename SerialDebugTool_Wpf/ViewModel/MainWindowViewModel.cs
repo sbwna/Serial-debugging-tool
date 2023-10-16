@@ -1,8 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using SerialDebugTool_Wpf.Model;
+using SerialDebugTool_Wpf.Converter;
 using System.IO.Ports;
 using System.Windows.Documents;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace SerialDebugTool_Wpf.ViewModel
 {
@@ -13,13 +14,10 @@ namespace SerialDebugTool_Wpf.ViewModel
             ReceviedData = new FlowDocument(new Paragraph(new Run("")));
         }
 
-        /// <summary>
-        /// 串口参数配置
-        /// </summary>
-        private static SerialPortParameterConfig serialPortConfig = new SerialPortParameterConfig();
+        //串口
+        private static SerialPort serialPort = new SerialPort();
 
         #region 属性
-
         /// <summary>
         /// 当前串口号
         /// </summary>
@@ -119,11 +117,9 @@ namespace SerialDebugTool_Wpf.ViewModel
             get => openPortButtonContent;
             set => SetProperty(ref openPortButtonContent, value);
         }
-
         #endregion
 
         #region 命令
-
         /// <summary>
         /// 获取串口列表
         /// </summary>
@@ -149,7 +145,7 @@ namespace SerialDebugTool_Wpf.ViewModel
             // 配置为空
             if (PortNumber == null || BaudRate == null || DataBits == null || ParityBit == null || StopBit == null)
             {
-
+                MessageBox.Error("串口参数未配置", "打开串口失败");
                 return;
             }
 
@@ -157,14 +153,48 @@ namespace SerialDebugTool_Wpf.ViewModel
             if (IsOpen)
             {
                 OpenPortButtonContent = "关闭串口";
-                serialPortConfig = new SerialPortParameterConfig(PortNumber, BaudRate, DataBits, ParityBit, StopBit);
-                serialPortConfig.Open();
+                serialPort = new SerialPort(PortNumber, BaudRate, SerialPortParameterConvertor.ParityConvertor(ParityBit),
+                    DataBits, SerialPortParameterConvertor.StopBitsConvertor(StopBit));
+
+                serialPort.Open();
+                serialPort.DataReceived += SerialPort_DataReceived;
             }
             else
             {
                 OpenPortButtonContent = "打开串口";
-                serialPortConfig.Close();
+                serialPort.DataReceived -= SerialPort_DataReceived;
+                serialPort.Close();
             }
+        }
+
+        /// <summary>
+        /// 数据接收事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            //Paragraph p = new Paragraph(new Run(serialPort.ReadExisting()));
+            //ReceviedData.Blocks.Add(p);
+
+            MessageBox.Info(serialPort.ReadExisting(), "数据已接收");
+        }
+
+        /// <summary>
+        /// 发送数据
+        /// </summary>
+        private RelayCommand? send;
+        public IRelayCommand SendDataCommand => send ??= new RelayCommand(Send);
+
+        private void Send()
+        {
+            if (!IsOpen)
+            {
+                MessageBox.Error("串口未打开", "打开串口失败");
+                return;
+            }
+
+            serialPort.WriteLine(SendData);
         }
 
         /// <summary>
@@ -190,22 +220,6 @@ namespace SerialDebugTool_Wpf.ViewModel
         }
 
         /// <summary>
-        /// 发送数据
-        /// </summary>
-        private RelayCommand? send;
-        public IRelayCommand SendDataCommand => send ??= new RelayCommand(Send);
-
-        private void Send()
-        {
-            if (!IsOpen)
-            {
-                return;
-            }
-
-            serialPortConfig.Send(SendData);
-        }
-
-        /// <summary>
         /// 程序退出
         /// </summary>
         private RelayCommand? exit;
@@ -215,7 +229,6 @@ namespace SerialDebugTool_Wpf.ViewModel
         {
             System.Environment.Exit(0);
         }
-
         #endregion
     }
 }
